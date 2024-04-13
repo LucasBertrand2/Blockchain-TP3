@@ -360,12 +360,12 @@ interface Window {
 }
 
 const PreviousDraws = () => {
-    const [draws, setDraws] = useState([]);
-    const myWindow: Window = window as unknown as Window
-    const webService = new LotteryService("0xe68A3c8FF152C8113104658Dae1BD9a1d1c1bD3d", JSON.stringify(ABI), myWindow.ethereum);
-    webService.ticketPrice().then((price) => {
-        console.log(price);
-    });
+
+    useEffect(() => {
+        const myWindow: Window = window as unknown as Window
+        const Web3 = new LotteryService("0xe68A3c8FF152C8113104658Dae1BD9a1d1c1bD3d", JSON.stringify(ABI), myWindow.ethereum)
+        Web3.getPlayers().then((e) => console.log(`result ${JSON.stringify(e)}`))
+    }, []);
 
     return (
         <div>
