@@ -3,6 +3,7 @@ import CardBanner from "@/app/components/cardBanner";
 import React from "react";
 import Image from 'next/image';
 import Gambling from "@/app/images/illustration-gambling.png";
+import LotteryBoard from "@/app/components/lotteryBoard";
 
 export default function Home() {
     return (
@@ -32,6 +33,7 @@ export default function Home() {
                 </div>
             </section>
             <CardBanner />
+            <LotteryBoard></LotteryBoard>
         </main>
     );
 }
