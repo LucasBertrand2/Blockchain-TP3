@@ -55,7 +55,9 @@ export class LotteryService {
     private async executePayableContractMethod(methodName: string, parameters: TransactionParameters, ...args: any[]): Promise<any> {
         try {
             const signer = await this.getSigner();
+
             const contract = this.getContract(signer);
+
             return contract[methodName](...args, parameters);
         } catch (e) {
             this.handleError(e);
@@ -74,7 +76,7 @@ export class LotteryService {
         return this.executeContractMethod("LotteryResultAdded", index,winner,reward);
     }
 
-    public async buyTicket(param: TransactionParameters) : Promise<string> {
+    public async buyTicket(param: TransactionParameters) : Promise<any> {
         return this.executePayableContractMethod("buyTicket", param);
     }
 

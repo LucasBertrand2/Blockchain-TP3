@@ -1,9 +1,13 @@
 import Header from "@/app/components/header";
-import CardBanner from "@/app/components/cardBanner";
 import React from "react";
 import Image from 'next/image';
 import Gambling from "@/app/images/illustration-gambling.png";
-import LotteryBoard from "@/app/components/lotteryBoard";
+
+import GetPlayers from "@/app/components/getPlayers";
+import BuyTicket from "@/app/components/buyTicket";
+import PickWinner from "@/app/components/pickWinner";
+
+
 
 export default function Home() {
     return (
@@ -32,8 +36,9 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <CardBanner />
-            <LotteryBoard></LotteryBoard>
+            <GetPlayers/>
+            <BuyTicket/>
+            <PickWinner/>
         </main>
     );
 }
