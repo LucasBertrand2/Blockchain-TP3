@@ -310,7 +310,7 @@ const ABI = [
     },
     {
         "inputs": [],
-        "name": "ticketPrice",
+        "name": "MaxPlayers",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -358,53 +358,52 @@ interface Window {
     ethereum: import('ethers').Eip1193Provider
 }
 
-const GetTicketPrice = () => {
-    const [ticketPriceData, setTicketPriceData] = useState<number>();
-    const [showPrice, setShowPrice] = useState(false);
+const GetMaxPlayers = () => {
+    const [MaxPlayersData, setMaxPlayersData] = useState<number>();
+    const [showMaxPlayers, setShowMaxPlayers] = useState(false);
 
     useEffect(() => {
-        handleGetTicketPriceData().then();
+        handleGetMaxPlayersData().then();
     }, []);
-    const handleGetTicketPriceData = async () => {
+    const handleGetMaxPlayersData = async () => {
         try {
             const myWindow: Window = window as unknown as Window;
             const Web3 = new LotteryService('0xe68A3c8FF152C8113104658Dae1BD9a1d1c1bD3d', JSON.stringify(ABI), myWindow.ethereum);
-            const ticketPrice = await Web3.ticketPrice();
-            setTicketPriceData(ticketPrice);
-            console.log('TicketPrice data:', ticketPrice.toString());
+            const MaxPlayers = await Web3.maxPlayers();
+            setMaxPlayersData(MaxPlayers);
         } catch (error) {
             console.error('Error fetching players data:', error);
         }
     };
 
-    const handleTogglePrice = () => {
-        setShowPrice(!showPrice);
+    const handleToggleMaxPlayers = () => {
+        setShowMaxPlayers(!showMaxPlayers);
     };
 
     return (
-        <div className="bg-white py-3 sm:py-8 lg:py-12">
+        <div className="bg-white py-6 sm:py-8 lg:py-12">
             <div className="mx-auto max-w-screen-lg px-4 md:px-8">
                 <div className="flex flex-col rounded-lg bg-gray-100 p-4 sm:flex-row md:p-8">
                     <div className="flex justify-between w-full items-center mb-4 sm:mb-0">
                         <div>
-                            <h2 className="text-xl font-bold text-indigo-500 md:text-2xl">Fonction : Prix du ticket </h2>
-                            <p className="text-gray-600">Permet de : Récupérer le prix d&apos;un ticket</p>
+                            <h2 className="text-xl font-bold text-indigo-500 md:text-2xl">Fonction : Nombre maximum de joueur </h2>
+                            <p className="text-gray-600">Permet de : Récupérer le nombre de joueur maximum</p>
                         </div>
                         <div className="flex gap-4">
                             <button
                                 className="rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base"
-                                onClick={handleTogglePrice}
+                                onClick={handleToggleMaxPlayers}
                             >
-                                {showPrice ? 'Cacher le prix' : 'Voir le prix'}
+                                {showMaxPlayers ? 'Cacher la limite de joueurs' : 'Voir la limite de joueurs'}
                             </button>
                         </div>
                     </div>
                 </div>
-                {showPrice && (
+                {showMaxPlayers && (
                     <div className="mt-8 bg-gray-200 p-6 rounded-lg">
                         <h2 className="text-xl font-bold mb-4">Résultat :</h2>
                         <ul>
-                            <li className="text-gray-600">Prix du ticket: {ticketPriceData?.toString()} Wei</li>
+                            <li className="text-gray-600">Nombre de joueur maximum: {MaxPlayersData?.toString()} joueurs</li>
                         </ul>
                     </div>
                 )}
@@ -413,5 +412,5 @@ const GetTicketPrice = () => {
     );
 };
 
-export default GetTicketPrice;
+export default GetMaxPlayers;
 

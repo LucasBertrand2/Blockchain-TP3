@@ -383,7 +383,7 @@ const GetPlayers = () => {
                 <div
                     className="flex flex-col items-center justify-between gap-4 rounded-lg bg-gray-100 p-4 sm:flex-row md:p-8">
                     <div>
-                        <h2 className="text-xl font-bold text-indigo-500 md:text-2xl">Fonction : Get Players </h2>
+                        <h2 className="text-xl font-bold text-indigo-500 md:text-2xl">Fonction : Liste des participants </h2>
                         <p className="text-gray-600">Permet de : Récupérer la liste des joueurs qui possède actuellement un ticket</p>
                     </div>
                     <button
