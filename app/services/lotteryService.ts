@@ -29,7 +29,7 @@ export class LotteryService {
         this.ethereumProvider = _ethereumProvider;
     }
 
-    private async getSigner(): Promise<JsonRpcSigner> {
+    public async getSigner(): Promise<JsonRpcSigner> {
         try {
             const provider = new BrowserProvider(this.ethereumProvider);
             return provider.getSigner();
@@ -38,7 +38,7 @@ export class LotteryService {
         }
     }
 
-    private getContract(signer: JsonRpcSigner): Contract {
+    public getContract(signer: JsonRpcSigner): Contract {
         return new Contract(this.contractAddress, this.abi as InterfaceAbi, signer);
     }
 

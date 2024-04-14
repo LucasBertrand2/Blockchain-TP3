@@ -6,6 +6,7 @@ import Gambling from "@/app/images/illustration-gambling.png";
 import GetPlayers from "@/app/components/getPlayers";
 import BuyTicket from "@/app/components/buyTicket";
 import PickWinner from "@/app/components/pickWinner";
+import GetAllLottery from "@/app/components/getAllLotteryResults";
 
 
 
@@ -36,6 +37,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+            <GetAllLottery/>
             <GetPlayers/>
             <BuyTicket/>
             <PickWinner/>
