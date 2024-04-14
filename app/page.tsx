@@ -7,6 +7,7 @@ import GetPlayers from "@/app/components/getPlayers";
 import BuyTicket from "@/app/components/buyTicket";
 import PickWinner from "@/app/components/pickWinner";
 import GetAllLottery from "@/app/components/getAllLotteryResults";
+import GetTicketPrice from "@/app/components/getTicketPrice";
 
 
 
@@ -38,6 +39,7 @@ export default function Home() {
                 </div>
             </section>
             <GetAllLottery/>
+            <GetTicketPrice/>
             <GetPlayers/>
             <BuyTicket/>
             <PickWinner/>
