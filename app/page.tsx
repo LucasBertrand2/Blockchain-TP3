@@ -9,6 +9,7 @@ import PickWinner from "@/app/components/pickWinner";
 import GetAllLottery from "@/app/components/getAllLotteryResults";
 import GetTicketPrice from "@/app/components/getTicketPrice";
 import GetMaxPlayers from "@/app/components/getMaxPlayers";
+import LotteryResultSelector from "@/app/components/LotterySelector";
 
 
 
@@ -40,6 +41,7 @@ export default function Home() {
                 </div>
             </section>
             <GetAllLottery/>
+            <LotteryResultSelector/>
             <GetTicketPrice/>
             <GetMaxPlayers/>
             <GetPlayers/>

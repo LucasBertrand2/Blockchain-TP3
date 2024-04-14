@@ -361,10 +361,6 @@ interface Window {
 const GetPlayers = () => {
     const [playersData, setPlayersData] = useState<any[]>([]);
 
-    useEffect(() => {
-        handleGetPlayersData();
-    }, []);
-
     const handleGetPlayersData = async () => {
         try {
             const myWindow: Window = window as unknown as Window;
