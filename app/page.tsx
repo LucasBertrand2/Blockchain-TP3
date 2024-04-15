@@ -1,5 +1,6 @@
+"use client"
 import Header from "@/app/components/header";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Image from 'next/image';
 import Gambling from "@/app/images/illustration-gambling.png";
 
@@ -11,9 +12,29 @@ import GetTicketPrice from "@/app/components/getTicketPrice";
 import GetMaxPlayers from "@/app/components/getMaxPlayers";
 import LotteryResultSelector from "@/app/components/LotterySelector";
 
+import {Window} from "@/app/window";
+
 
 
 export default function Home() {
+    const [isConnected, setIsConnected] = useState<boolean>(false);
+
+    useEffect(() => {
+        const checkMetaMaskConnection = async () => {
+            const myWindow: Window = window as unknown as Window;
+            if (myWindow.ethereum === undefined) {
+                console.log('MetaMask n\'est pas installé');
+                setIsConnected(false)
+            }
+            else {
+                console.log('MetaMask est installé');
+                setIsConnected(true)
+            }
+        };
+
+        checkMetaMaskConnection();
+    }, []);
+
     return (
         <main>
             <Header />
@@ -40,13 +61,29 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <GetAllLottery/>
-            <LotteryResultSelector/>
-            <GetTicketPrice/>
-            <GetMaxPlayers/>
-            <GetPlayers/>
-            <BuyTicket/>
-            <PickWinner/>
+            { isConnected ? (
+                <>
+                    <GetAllLottery />
+                    <LotteryResultSelector />
+                    <GetTicketPrice />
+                    <GetMaxPlayers />
+                    <GetPlayers />
+                    <BuyTicket />
+                    <PickWinner />
+                </>
+            ) : (
+                <div className="bg-white py-6 sm:py-8 lg:py-12">
+                    <div className="mx-auto max-w-screen-lg px-4 md:px-8">
+                        <div className="flex flex-col items-center justify-between gap-4 rounded-lg bg-gray-100 p-4 sm:flex-row md:p-8">
+                            <div>
+                                <h2 className="text-xl font-bold text-indigo-500 md:text-2xl">Vous n&apos;êtes pas connecté à Métamask</h2>
+                                <p className="text-gray-600">Connectez-vous et rafraichissez la page</p>
+                            </div>
+                            <a href="https://metamask.io/" target="_blank" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Installer MetaMask</a>
+                        </div>
+                    </div>
+                </div>
+            )}
         </main>
     );
 }
